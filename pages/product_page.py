@@ -29,12 +29,20 @@ class ProductPage(BasePage):
         return product_name
 
     def should_be_product_name(self, product_name):
-        # product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        product_name_in_basket = self.browser.find_element(By.XPATH, f'//div[contains(@class,"alertinner")]/strong[contains(text(), "{product_name}")]').text
-        # assert self.is_element_present(*ProductPageLocators.ALERTINNER), "Product in basket"
+        product_name_in_basket = self.browser.find_element(By.XPATH, 
+        f'//div[contains(@class,"alertinner")]/strong[contains(text(), "{product_name}")]').text
         assert product_name == product_name_in_basket, f"{product_name} не равен {product_name_in_basket}"
     
     def should_be_product_price_in_basket(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         product_price_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET).text
-        assert product_price == product_price_in_basket, f"{product_price} не равен {product_price_in_basket}"
+        assert product_price == product_price_in_basket, \
+        f"{product_price} не равен {product_price_in_basket}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+       "Success message is presented, but should not be"
+
+    def should_be_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but wanna disappered"
