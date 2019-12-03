@@ -2,10 +2,16 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    BASKET_LINK  = (By.LINK_TEXT, "View basket")
     # LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+class BasketPageLocators():
+    BASKET_SUMMARY = (By.CLASS_NAME, "basket_summary")
+    TEXT_EMPTY_BASKET = (By.XPATH, '//p[contains(text(),"Your basket is empty.")]')
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    
 
 class LoginPageLocators():
     LOGIN_URL = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
