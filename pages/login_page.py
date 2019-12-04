@@ -1,7 +1,19 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
+from selenium.webdriver.common.by import By
 
 class LoginPage(BasePage):
+    
+    def register_new_user(self, email, password):
+        email_input = self.browser.find_element(*LoginPageLocators.LOGIN_EMAIL)
+        email_input.send_keys(email)
+        password_input = self.browser.find_element(*LoginPageLocators.LOGIN_PASSWORD)
+        password_input.send_keys(password)
+        confirm_password_input = self.browser.find_element(*LoginPageLocators.LOGIN_CONFRIM_PASSWORD)
+        confirm_password_input.send_kyes(password)
+        login_button = self.browser.find_element(*LoginPageLocators.BUTTON_LOG_IN)
+        login_button.click()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
