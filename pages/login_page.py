@@ -10,7 +10,7 @@ class LoginPage(BasePage):
         password_input = self.browser.find_element(*LoginPageLocators.LOGIN_PASSWORD)
         password_input.send_keys(password)
         confirm_password_input = self.browser.find_element(*LoginPageLocators.LOGIN_CONFRIM_PASSWORD)
-        confirm_password_input.send_kyes(password)
+        confirm_password_input.send_keys(password)
         login_button = self.browser.find_element(*LoginPageLocators.BUTTON_LOG_IN)
         login_button.click()
 
