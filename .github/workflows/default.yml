@@ -3,16 +3,16 @@ on: push
 
 jobs:
   my_first_job:
-    name: My first job
+    name: Compile job
     runs-on: ubuntu-latest
     steps:
-      - name: Greeting
+      - name: Debug
         run: |
-          echo "Hello, world!"
+          ls
 
-      - name: Goodbye
+      - name: Compile
         run: |
-          echo "Goodbye, world!"
+          scripts/compile.sh
 
   my_second_job:
     name: My second job
