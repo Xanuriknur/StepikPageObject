@@ -2,7 +2,7 @@ name: My first workflow
 on: push
 
 jobs:
-  my_first_job:
+  compile_job:
     name: Compile job
     runs-on: ubuntu-latest
     steps:
@@ -12,19 +12,18 @@ jobs:
       - name: Create output directory
         run: |
           mkdir out
-
       - name: Compile
         run: |
           scripts/compile.sh > out/code.compiled
-
       - name: Upload compiled code
         uses: actions/upload-artifact@v2
         with:
           name: compiled
           path: out/code.compiled
 
-  my_second_job:
-    name: My second job
+  analyze_job:
+    name: Analyze job
+    needs: compile_job
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
@@ -32,3 +31,9 @@ jobs:
         with:
           name: compiled
           path: .
+
+      - name: Hello, world
+        run: |
+          echo "Hello, $NAME"
+        env:
+          NAME: "Dima"
