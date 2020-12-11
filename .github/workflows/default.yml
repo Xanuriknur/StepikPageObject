@@ -9,9 +9,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Create output directory
+        run: |
+          mkdir out
+
       - name: Compile
         run: |
-          scripts/compile.sh
+          scripts/compile.sh > out/code.compiled
+
+      - name: Upload compiled code
+        uses: actions/upload-artifact@v2
+        with:
+          name: compiled
+          path: out/code.compiled
+
   my_second_job:
     name: My second job
     runs-on: ubuntu-latest
