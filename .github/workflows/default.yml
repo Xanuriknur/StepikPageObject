@@ -27,6 +27,8 @@ jobs:
     name: My second job
     runs-on: ubuntu-latest
     steps:
-      - name: Greeting from second job
-        run: |
-          echo "Hello, world from 2nd job"
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: compiled
+          path: .
